@@ -27,9 +27,9 @@ function addTask(id,data){
 }
 function getTask(){
     return db('projects')
-    .crossJoin('task','projects.id','task.id')
-    .select('notes','project_name')
-    .orderBy('project_name','asc')
+    .innerJoin('task','projects.id','task.project_id')
+    .select( 'project_name', 'notes','task.description')
+    .orderBy('project_name')
     
 }
 function getAllTask(){

@@ -5,7 +5,7 @@ exports.up = function(knex) {
       proj.text('project_name')
       .unique()
       .notNullable()
-      proj.text('description')
+      proj.text('project_description')
       proj.boolean('completed').defaultTo(false)
   })
   .createTable('resources',res=>{
@@ -13,7 +13,7 @@ exports.up = function(knex) {
       res.text('name')
       .notNullable()
       .unique()
-      res.text('description')
+      res.text('resource_description')
 
     //   res.integer('project_id')
     //     .references('id')
