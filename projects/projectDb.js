@@ -25,12 +25,29 @@ function addTask(id,data){
     return db('task')
     .insert({project_id:id,notes,description})
 }
+function getTask(){
+    return db('projects')
+    .crossJoin('task','projects.id','task.id')
+    .select('notes','project_name')
+    .orderBy('project_name','asc')
+    
+}
+function getAllTask(){
+    return db('task')
+}
 
+function getTaskById(id){
+    return db('task')
+    .where('project_id', id)
+}
 module.exports = {
     addResource,
     getResources,
     addProject,
     getProjects,
     addTask,
+    getTask,
+    getAllTask,
+    getTaskById
 
 }

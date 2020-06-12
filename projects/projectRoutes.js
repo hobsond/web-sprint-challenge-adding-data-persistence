@@ -29,8 +29,28 @@ router.get('/',(req,res)=>{
 
 router.post('/:id/task',(req,res)=>{
     const id = req.params.id
+    const newId = Number(id)
     const data = req.body
-    prjDb.addTask(id,data)
+    prjDb.addTask(newId,data)
+    .then(item=>res.status(200).json(item))
+    .catch(err=>res.status(400).json(err))
+})
+
+router.get('/task',(req,res)=>{
+    prjDb.getTask()
+    .then(item=>res.status(200).json(item))
+    .catch(err=>res.status(400).json(err))
+})
+
+router.get('/task',(req,res)=>{
+    prjDb.getAllTask()
+    .then(item=>res.status(200).json(item))
+    .catch(err=>res.status(400).json(err))
+})
+
+router.get('/:id/task',(req,res)=>{
+    const id = Number(req.params.id)
+    prjDb.getTaskById(id)
     .then(item=>res.status(200).json(item))
     .catch(err=>res.status(400).json(err))
 })
